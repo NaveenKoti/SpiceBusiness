@@ -1,0 +1,513 @@
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q76298E3KZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q76298E3KZ');
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+</head>
+<style>
+    #myInput {
+        background-image: url('/css/searchicon.png');
+        /* Add a search icon to input */
+        background-position: 10px 12px;
+        /* Position the search icon */
+        background-repeat: no-repeat;
+        /* Do not repeat the icon image */
+        width: 100%;
+        /* Full-width */
+        font-size: 16px;
+        /* Increase font-size */
+        padding: 12px 20px 12px 40px;
+        /* Add some padding */
+        border: 1px solid #ddd;
+        /* Add a grey border */
+        margin-bottom: 12px;
+        /* Add some space below the input */
+    }
+
+    #myTable {
+        border-collapse: collapse;
+        /* Collapse borders */
+        width: 100%;
+        /* Full-width */
+        border: 1px solid #ddd;
+        /* Add a grey border */
+        font-size: 18px;
+        /* Increase font-size */
+    }
+
+    #myTable th,
+    #myTable td {
+        text-align: left;
+        /* Left-align text */
+        padding: 12px;
+        /* Add padding */
+    }
+
+    #myTable tr {
+        /* Add a bottom border to all table rows */
+        border-bottom: 1px solid #ddd;
+    }
+
+    #myTable tr.header,
+    #myTable tr:hover {
+        /* Add a grey background color to the table header and on hover */
+        background-color: #f1f1f1;
+    }
+</style>
+<script>
+    var spices = {
+        "KUSUM SPICES & DRY FRUITS": [{
+                "Spice Name": "CARDIMUM",
+                "slug_name": "cardimum",
+                "Weights Available": {
+                    "250gms": 625,
+                    "100gms": 250,
+                    "50 gms": 125
+                }
+            },
+            {
+                "Spice Name": "CLOVE  ",
+                "slug_name": "clove",
+                "Weights Available": {
+                    "250gms": 400,
+                    "100gms": 160,
+                    "50 gms": 80
+                }
+            },
+            {
+                "Spice Name": "PEPPER  ",
+                "slug_name": "pepper",
+                "Weights Available": {
+                    "250gms": 262,
+                    "100gms": 105,
+                    "50 gms": 105
+                }
+            },
+            {
+                "Spice Name": "JEERA",
+                "slug_name": "jeera",
+                "Weights Available": {
+                    "250gms": 400,
+                    "100gms": 200,
+                    "50 gms": 100
+                }
+            },
+            {
+                "Spice Name": "KHUSKHUS",
+                "slug_name": "khuskhus",
+                "Weights Available": {
+                    "250gms": 525,
+                    "100gms": 210,
+                    "50 gms": 105
+                }
+            },
+            {
+                "Spice Name": "CEYLON CHAKKE",
+                "slug_name": "ceylon_chakke",
+                "Weights Available": {
+                    "250gms": 650,
+                    "100gms": 375,
+                    "50 gms": 130
+                }
+            },
+            {
+                "Spice Name": "SPLIT CHAKKE",
+                "slug_name": "split_chakke",
+                "Weights Available": {
+                    "250gms": 300,
+                    "100gms": 150,
+                    "50 gms": 60
+                }
+            },
+            {
+                "Spice Name": " GUNTUR CHILLI",
+                "slug_name": "guntur_chilli",
+                "Weights Available": {
+                    "1 KG": 560,
+                    "500gms": 280,
+                    "250gms": 140
+                }
+            },
+            {
+                "Spice Name": "BYADGI CHILLI",
+                "slug_name": "byadgi_chilli",
+                "Weights Available": {
+                    "1 KG": 760,
+                    "500gms": 380,
+                    "250gms": 190
+                }
+            },
+            {
+                "Spice Name": "CHERRY CHILLI",
+                "slug_name": "cherry_chilli",
+                "Weights Available": {
+                    "1 KG": 625,
+                    "500gms": 315,
+                    "250gms": 160
+                }
+            },
+            {
+                "Spice Name": "PALAV LEAF",
+                "slug_name": "palav_leaf",
+                "Weights Available": {
+                    "250gms": 100,
+                    "100gms": 40,
+                    "50 gms": 25
+                }
+            },
+            {
+                "Spice Name": "METHI",
+                "slug_name": "methi",
+                "Weights Available": {
+                    "500gms": 70,
+                    "250gms": 35,
+                    "100gms": 20
+                }
+            },
+            {
+                "Spice Name": "KALAUNJI",
+                "slug_name": "kalkaunji",
+                "Weights Available": {
+                    "250gms": 120,
+                    "100gms": 60,
+                    "50 gms": 35
+                }
+            },
+            {
+                "Spice Name": "EDIBLE GUM",
+                "slug_name": "edible_gum",
+                "Weights Available": {
+                    "250gms": 105,
+                    "100gms": 55,
+                    "50 gms": 30
+                }
+            },
+            {
+                "Spice Name": "KADU JEERIGE",
+                "slug_name": "kadu_jeerige",
+                "Weights Available": {
+                    "250gms": 200,
+                    "100gms": 80,
+                    "50 gms": 40
+                }
+            },
+            {
+                "Spice Name": "DRY COCONUT",
+                "slug_name": "adry_coconut",
+                "Weights Available": {
+                    "1 KG": 360,
+                    "500gms": 180,
+                    "250gms": 90
+                }
+            },
+            {
+                "Spice Name": "GRATED COCO",
+                "slug_name": "grated_coco",
+                "Weights Available": {
+                    "1 KG": 300,
+                    "500gms": 150
+                }
+            },
+            {
+                "Spice Name": "BLACK CARDM",
+                "slug_name": "black_cardm",
+                "Weights Available": {
+                    "250gms": 375,
+                    "100gms": 150,
+                    "50 gms": 75
+                }
+            },
+            {
+                "Spice Name": "KASURI METHI",
+                "slug_name": "kasuri_methi",
+                "Weights Available": {
+                    "500gms": 150,
+                    "250gms": 75,
+                    "100gms": 30
+                }
+            },
+            {
+                "Spice Name": "SOUMPH SMLL",
+                "slug_name": "soumph_smll",
+                "Weights Available": {
+                    "500gms": 200,
+                    "250gms": 100,
+                    "100gms": 40
+                }
+            },
+            {
+                "Spice Name": "SOUMPH BIG",
+                "slug_name": "soumph_big",
+                "Weights Available": {
+                    "1 KG": 360,
+                    "500gms": 180,
+                    "250gms": 90
+                }
+            },
+            {
+                "Spice Name": "ANI SEEDS",
+                "slug_name": "ani_seeds",
+                "Weights Available": {
+                    "250gms": 400,
+                    "100gms": 160,
+                    "50 gms": 80
+                }
+            },
+            {
+                "Spice Name": "NET MEG",
+                "slug_name": "net_meg",
+                "Weights Available": {
+                    "250gms": 400,
+                    "100gms": 156,
+                    "50 gms": 80
+                }
+            },
+            {
+                "Spice Name": "DRY GENGER",
+                "slug_name": "dry_genger",
+                "Weights Available": {
+                    "250gms": 200,
+                    "100gms": 100,
+                    "50 gms": 45
+                }
+            },
+            {
+                "Spice Name": "SODA",
+                "slug_name": "soda",
+                "Weights Available": {
+                    "250gms": 50,
+                    "100gms": 20
+                }
+            },
+            {
+                "Spice Name": "AJAWAIN",
+                "slug_name": "ajawain",
+                "Weights Available": {
+                    "250gms": 100,
+                    "100gms": 40
+                }
+            },
+            {
+                "Spice Name": "MARATHA MOGGU",
+                "slug_name": "maratha_moggu",
+                "Weights Available": {
+                    "250gms": 150,
+                    "100gms": 60,
+                    "50 gms": 30
+                }
+            },
+            {
+                "Spice Name": "MUSTRAD",
+                "slug_name": "mustrad",
+                "Weights Available": {
+                    "1 KG": 160,
+                    "500gms": 80,
+                    "250gms": 40
+                }
+            },
+            {
+                "Spice Name": "TURMARIC",
+                "slug_name": "turmaric",
+                "Weights Available": {
+                    "500gms": 160,
+                    "250gms": 80,
+                    "100gms": 320
+                }
+            },
+            {
+                "Spice Name": "AJINOMOTO",
+                "slug_name": "ajinomoto",
+                "Weights Available": {
+                    "250gms": 85,
+                    "100gms": 34
+                }
+            },
+            {
+                "Spice Name": "MARATA MOGGU",
+                "slug_name": "marata_moggu",
+                "Weights Available": {
+                    "250gms": 200,
+                    "100gms": 80,
+                    "50 gms": 40
+                }
+            },
+            {
+                "Spice Name": "SHAJEERA",
+                "slug_name": "shajeera",
+                "Weights Available": {
+                    "250gms": 180,
+                    "100gms": 72,
+                    "50 gms": 36
+                }
+            },
+            {
+                "Spice Name": "MUSTRD BIG",
+                "slug_name": "mustrd_big",
+                "Weights Available": {
+                    "500gms": 95,
+                    "250gms": 50,
+                    "100gms": 20
+                }
+            },
+            {
+                "Spice Name": "TAMARIND",
+                "slug_name": "tamarind",
+                "Weights Available": {
+                    "1 KG": 180,
+                    "500gms": 100
+                }
+            },
+            {
+                "Spice Name": "MUSTRD YELLOW",
+                "slug_name": "mustrd_yellow",
+                "Weights Available": {
+                    "500gms": 130,
+                    "250gms": 65,
+                    "100gms": 26
+                }
+            },
+            {
+                "Spice Name": "DHANIA",
+                "slug_name": "dhania",
+                "Weights Available": {
+                    "1 KG": 340,
+                    "500gms": 170,
+                    "250gms": 85
+                }
+            },
+            {
+                "Spice Name": "STONE FLOWER",
+                "slug_name": "stone_flower",
+                "Weights Available": {
+                    "100gms": 140,
+                    "50 gms": 70
+                }
+            },
+            {
+                "Spice Name": "DRIED MACE",
+                "slug_name": "dried_mace",
+                "Weights Available": {
+                    "250gms": 1000,
+                    "100gms": 400,
+                    "50 gms": 200
+                }
+            },
+            {
+                "Spice Name": "SASME (BLK)",
+                "slug_name": "sasme_blk",
+                "Weights Available": {
+                    "250gms": 80,
+                    "100gms": 32,
+                    "50 gms": 18
+                }
+            },
+            {
+                "Spice Name": "SASME (WHT)",
+                "slug_name": "sasme_wht",
+                "Weights Available": {
+                    "250gms": 75,
+                    "100gms": 30,
+                    "50 gms": 15
+                }
+            },
+            {
+                "Spice Name": "SASME NYLON",
+                "slug_name": "sasme_nylon",
+                "Weights Available": {
+                    "250gms": 85,
+                    "100gms": 45,
+                    "50 gms": 23
+                }
+            }
+        ]
+    }
+</script>
+
+<body>
+    <div class="container">
+        <form>
+            <div id="spices-select"></div>
+        </form>
+        <div class="text-center p-3"><button type="button" onclick="showValues()" class="btn btn-success btn-rounded"
+                style="width: -webkit-fill-available;">Submit</button></div>
+    </div>
+</body>
+<script>
+    var spiceOBJ = spices["KUSUM SPICES & DRY FRUITS"];
+
+    var spiceHTML =
+        '<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Choose the wights for the spices..."><table id="myTable"><tr class="header"><th style="width:60%;">Spice Name</th><th style="width:40%;">Your Selection</th></tr>';
+
+    for (var i in spiceOBJ) {
+        spiceHTML += "<tr><td>" + spiceOBJ[i]["Spice Name"] + "</td><td>";
+        spiceHTML += "<select name='" + spiceOBJ[i]["slug_name"] + "' id=" + spiceOBJ[i]["slug_name"] + ">";
+        spiceHTML += "<option value='na'>NA</option>";
+        for (var j in Object.keys(spiceOBJ[i]['Weights Available'])) {
+            spiceHTML += "<option value='" + spiceOBJ[i]["slug_name"] + "-" + Object.keys(spiceOBJ[i][
+                    'Weights Available'
+                ])[j] + "-" + spiceOBJ[i]['Weights Available'][Object.keys(spiceOBJ[i]['Weights Available'])[j]] +
+                "'>" + "Weigths:" + Object.keys(spiceOBJ[i]['Weights Available'])[j] + " , &#8377;" + spiceOBJ[i][
+                    'Weights Available'
+                ][Object.keys(spiceOBJ[i]['Weights Available'])[j]] + "</option>";
+        }
+        spiceHTML += "</select></td></tr>"
+    }
+    spiceHTML += "</table>";
+
+    document.getElementById('spices-select').innerHTML = spiceHTML;
+
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function showValues() {
+        var str = $("form").serialize();
+        str = str.split('&');
+        var orderBreak = [];
+        for (var i in str) {
+            if (str[i].indexOf('=na') < 0) {
+                var valueSelected = str[i].split('=')[1];
+                orderBreak.push(valueSelected);
+            }
+        }
+        var orderLink = "https://wa.me/919380377508?text=MyOrders:" + orderBreak.join(',');
+        window.location.href = orderLink;
+    }
+</script>
+
+</html>
