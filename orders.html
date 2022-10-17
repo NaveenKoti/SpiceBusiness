@@ -532,7 +532,7 @@
             }
         }
         var orderLink = "https://wa.me/919380377508?text=MyOrders:" + orderBreak.join(',');
-        ga(‘send’, ‘event’, ‘Order’, ‘Spices’, orderLink);
+        gtag('event', 'send', {'eventCategory': 'orderSubmit','dimension5': orderLink});
         window.location.href = orderLink;
     }
 </script>
