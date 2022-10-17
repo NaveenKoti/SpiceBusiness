@@ -532,7 +532,9 @@
             }
         }
         var orderLink = "https://wa.me/919380377508?text=MyOrders:" + orderBreak.join(',');
+        
         gtag('event', 'send', {'eventCategory': 'orderSubmit','dimension5': orderLink});
+        
         window.location.href = orderLink;
     }
 </script>
