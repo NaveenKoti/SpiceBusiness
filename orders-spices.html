@@ -585,7 +585,7 @@
     var spiceOBJ = spices["KUSUM SPICES & DRY FRUITS"];
 
     var spiceHTML =
-        '<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Choose the weights for the spices..."><table id="myTable"><tr class="header"><th style="width:10%;"></th><th style="width:60%;">Spice Name</th><th style="width:40%;">Your Selection</th></tr>';
+        '<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Choose the weights for the spices..."><table id="myTable"><tr class="header"><th style="width:10%;"></th><th style="width:50%;">Spice Name</th><th style="width:40%;">Your Selection</th></tr>';
 
     for (var i in spiceOBJ) {
         spiceHTML +=
@@ -598,7 +598,7 @@
             spiceHTML += "<option value='" + spiceOBJ[i]["slug_name"] + "-" + Object.keys(spiceOBJ[i][
                     'Weights Available'
                 ])[j] + "-" + spiceOBJ[i]['Weights Available'][Object.keys(spiceOBJ[i]['Weights Available'])[j]] +
-                "'>" + "Weigths:" + Object.keys(spiceOBJ[i]['Weights Available'])[j] + " , Price: &#8377;" + spiceOBJ[i]
+                "'>" + "Weight:" + Object.keys(spiceOBJ[i]['Weights Available'])[j] + " , Price: &#8377;" + spiceOBJ[i]
                 ['Weights Available'][Object.keys(spiceOBJ[i]['Weights Available'])[j]] + "</option>";
         }
         spiceHTML += "</select></td></tr>"
