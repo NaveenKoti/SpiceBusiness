@@ -437,10 +437,10 @@
             }
         }
 
-        var orderLink = "dryFruitsOrder:" + orderBreak.join(',');
+        var orderLink = orderBreak.join(',');
 
         gtag('event', 'send', {
-            'eventCategory': 'orderSubmit',
+            'eventCategory': 'orderSubmit-dryfruits',
             'dimension5': orderLink
         });
 
