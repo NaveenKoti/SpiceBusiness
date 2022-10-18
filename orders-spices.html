@@ -115,22 +115,6 @@
         /* or some other value */
         transform: scale(2.5);
     }
-
-    copyright {
-        margin-top: 15px;
-        text-align: center;
-        font-size: 13px;
-        color: #aaa;
-        margin-bottom: 0;
-    }
-
-    copyleft {
-      display: inline-block;
-      transform: rotateY(180deg);
-    }
-    copyleft::after {
-      content: "\00a9";
-    }
 </style>
 <script>
     var spices = {
@@ -594,7 +578,7 @@
                 style="width: -webkit-fill-available;">Submit</button></div>
     </div>
     <footer class="text-center p-3">
-        <p class="copyright"><a href="https://naveenkoti.github.io/">&copy; 2022</a></p>
+        <p class=""><a href="https://naveenkoti.github.io/">&copy; 2022</a></p>
     </footer>
 </body>
 <script>
@@ -656,13 +640,13 @@
             }
         }
 
-        var orderLink = "SpicesOrder" + orderBreak.join(',');
+        var orderLink = orderBreak.join(',');
         gtag('event', 'send', {
-            'eventCategory': 'orderSubmit',
+            'eventCategory': 'orderSubmit-spices',
             'dimension5': orderLink
         });
 
-        orderLink = "https://wa.me/919380377508?text=MyOrders_for_spices:" + orderLink;
+        orderLink = "https://wa.me/919380377508?text=MyOrders_for_spices--" + orderLink;
 
         window.location.href = orderLink;
     }
