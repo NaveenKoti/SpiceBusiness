@@ -372,14 +372,14 @@
             }
         }
 
-        var orderLink = orderBreak.join(',');
+        var orderLink = "healthyOrder" + orderBreak.join(',');
 
         gtag('event', 'send', {
             'eventCategory': 'orderSubmit',
             'dimension5': orderLink
         });
 
-        orderLink = "https://wa.me/919380377508?text=MyOrders:" + orderLink;
+        orderLink = "https://wa.me/919380377508?text=MyOrders_for_healthy:" + orderLink;
 
         window.location.href = orderLink;
     }
