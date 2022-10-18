@@ -115,22 +115,6 @@
         /* or some other value */
         transform: scale(2.5);
     }
-
-    copyright {
-        margin-top: 15px;
-        text-align: center;
-        font-size: 13px;
-        color: #aaa;
-        margin-bottom: 0;
-    }
-
-    copyleft {
-      display: inline-block;
-      transform: rotateY(180deg);
-    }
-    copyleft::after {
-      content: "\00a9";
-    }
 </style>
 <script>
     var spices = {
@@ -372,14 +356,14 @@
             }
         }
 
-        var orderLink = "healthyOrder:" + orderBreak.join(',');
+        var orderLink = orderBreak.join(',');
 
         gtag('event', 'send', {
-            'eventCategory': 'orderSubmit',
+            'eventCategory': 'orderSubmit-healthy',
             'dimension5': orderLink
         });
 
-        orderLink = "https://wa.me/919380377508?text=MyOrders_for_healthy:" + orderLink;
+        orderLink = "https://wa.me/919380377508?text=MyOrders_for_healthy--" + orderLink;
 
         window.location.href = orderLink;
     }
