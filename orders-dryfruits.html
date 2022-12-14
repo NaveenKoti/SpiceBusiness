@@ -454,14 +454,18 @@
 
         var orderLink = orderBreak.join(',');
 
-        gtag('event', 'send', {
-            'eventCategory': 'orderSubmit-dryfruits',
-            'dimension5': orderLink
-        });
+       if(orderLink != ""){
+                gtag('event', 'send', {
+                'eventCategory': 'orderSubmit-dryFruits',
+                'dimension5': orderLink
+            });
 
-        orderLink = "https://wa.me/919380377508?text=MyOrders_for_dryFruits--" + orderLink;
+            orderLink = "https://wa.me/919380377508?text=MyOrders_for_dryFruits--" + orderLink;
 
-        window.location.href = orderLink;
+            window.location.href = orderLink;
+        }else{
+            alert("Please select quantity");
+        }
     }
 </script>
 
