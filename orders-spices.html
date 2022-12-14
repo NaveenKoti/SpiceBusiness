@@ -656,14 +656,18 @@
         }
 
         var orderLink = orderBreak.join(',');
-        gtag('event', 'send', {
-            'eventCategory': 'orderSubmit-spices',
-            'dimension5': orderLink
-        });
+        if(orderLink != ""){
+                gtag('event', 'send', {
+                'eventCategory': 'orderSubmit-spices',
+                'dimension5': orderLink
+            });
 
-        orderLink = "https://wa.me/919380377508?text=MyOrders_for_spices--" + orderLink;
+            orderLink = "https://wa.me/919380377508?text=MyOrders_for_spices--" + orderLink;
 
-        window.location.href = orderLink;
+            window.location.href = orderLink;
+        }else{
+            alert("Please select quantity");
+        }
     }
 </script>
 
