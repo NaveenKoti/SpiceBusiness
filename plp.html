@@ -165,14 +165,14 @@
             /* Adjust max width as needed */
         }
 
-        .col-lg-6.col-md-6.col-sm-12.mb-4 {
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* Ensure full-width for responsiveness */
-}
+        .product-card {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            /* Adjust the maximum width as needed */
+        }
 
         .product-image-container {
             width: 50%;
@@ -426,7 +426,7 @@
                 tags: ['bracelets', 'jewelrys', 'accessoriess'],
                 availability: false, // Set product availability (true for in stock, false for out of stock)
                 offer: '0% off',
-                image: 'https://img.freepik.com/free-psd/3d-realistic-modern-colorful-podium-product-display_125755-813.jpg?w=740&t=st=1693831688~exp=1693832288~hmac=6118044436935e3afb906dc23a76da46827a71f3b99cec0495e240392eb77e98'
+                image: ''
             },
             {
                 id: 'product3',
@@ -436,7 +436,7 @@
                 description: 'Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Utinam quidem dicerent alium alio beatiorem! Iubet igitur nos Pythius Apollo noscere nosmet ipsos. At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit; Duo Reges: constructio interrete.',
                 tags: ['earrings', 'jewel', 'acces'],
                 availability: false,
-                image: 'https://img.freepik.com/free-psd/3d-realistic-modern-colorful-podium-product-display_125755-813.jpg?w=740&t=st=1693831688~exp=1693832288~hmac=6118044436935e3afb906dc23a76da46827a71f3b99cec0495e240392eb77e98'
+                image: ''
             },
             // Add more products here
         ];
@@ -451,7 +451,7 @@
 
 
             productCard.innerHTML = `
-            <div class="col-lg-6 col-md-6 col-sm-12 mb-4" data-category="${product.category}" data-product-id="${product.id}" data-tags="${product.tags.join(',')}">
+            <div class="product-card" data-category="${product.category}" data-product-id="${product.id}" data-tags="${product.tags.join(',')}">
     <div class="product-image-container">
         <img src="${product.image}" alt="${product.name}" class="product-image" data-toggle="modal" data-target="#productModal">
     </div>
