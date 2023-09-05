@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product Listing - Your source for stylish jewelry.">
+    <title>Product Listing</title>
+
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Google Analytics Tracking Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'YOUR_TRACKING_ID');
+    </script>
+
+    <!-- Add your custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            /* Display image and details side by side */
+            text-align: center;
+            width: 100%;
+            /* Ensure full-width for responsiveness */
+        }
+
+        .product-image-container {
+            width: 50%;
+            /* Allocate half of the product card for the image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .product-image {
+            max-width: 100%;
+            max-height: 100%;
+            border: 2px solid #ddd;
+            padding: 5px;
+            cursor: pointer;
+            /* Add pointer cursor for clickability */
+        }
+
+        .product-details {
+            width: 50%;
+            /* Allocate half of the product card for details */
+            padding: 20px;
+        }
+
+        /* CSS for responsive design */
+        @media (max-width: 768px) {
+            .product-card {
+                flex-direction: column;
+                /* Stack image and details on small screens */
+            }
+
+            .product-image-container {
+                width: 100%;
+            }
+
+            .product-details {
+                width: 100%;
+            }
+        }
+
+        .favorite-button {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: #007bff;
+            /* Default color for unfavorite state */
+        }
+
+        .favorite-button.favorite {
+            color: red;
+        }
+
+        .product-identifier {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            /* display: none; */
+            /* Hide description by default */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-height: 3em;
+            /* Limit the height to show ... */
+            position: relative;
+        }
+
+        .show-description {
+            max-height: none;
+            /* Show full description on click */
+            white-space: normal;
+            position: static;
+        }
+
+        /* Modal styles */
+        .modal-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Adjust modal size as needed */
+        .modal-dialog {
+            max-width: 800px;
+            /* Customize maximum width for the modal */
+        }
+
+        .product-description.active {
+            display: block;
+        }
+
+        /* Filter section styles */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-button {
+            margin-right: 10px;
+        }
+
+        .search-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            /* Adjust max width as needed */
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            /* Adjust the maximum width as needed */
+        }
+
+        .product-image-container {
+            width: 50%;
+            /* Allocate half of the product card for the image */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-details {
+            padding: 20px;
+            width: 50%;
+            /* Allocate half of the product card for details */
+        }
+
+        img {
+            transition: transform 0.25s ease;
+        }
+
+        img:hover {
+            -webkit-transform: scale(2.5);
+            /* or some other value */
+            transform: scale(2.5);
+        }
+
+        .product-details {
+    padding: 20px;
+    width: 50%;
+}
+
+.product-info {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.product-info li {
+    margin-bottom: 10px;
+}
+
+.product-info li strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Left-align text */
+.product-info li {
+    text-align: left;
+}
+
+
+
+        /* SEO optimization */
+        meta[name="description"] {
+            content: "Your SEO-optimized description goes here.";
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="container-fluid bg-dark text-white p-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <!-- Replace with your company logo -->
+                    <img src="logo.png" alt="Company Logo" class="img-fluid">
+                </div>
+                <div class="col-6">
+                    <!-- Replace with your company name -->
+                    <h1 class="text-center">Company Name</h1>
+                </div>
+                <div class="col-3 text-right">
+                    <!-- Replace with your company phone number -->
+                    <p>Phone: +123-456-7890</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Discount Announcement -->
+    <div class="container mt-4">
+        <div class="alert alert-info">
+            <strong>Special Offer:</strong> Get a 20% discount on all purchases! Hurry, limited time offer.
+        </div>
+    </div>
+
+    <!-- Updated search input -->
+    <div class="container mt-4 search-container">
+        <div class="input-group">
+            <input type="text" id="tagSearch" placeholder="Search by tags" class="form-control search-input">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h1>Product Listing</h1>
+        <!-- Filter buttons -->
+        <div class="filter-buttons">
+            <button onclick="filterProducts('all', [])" class="btn btn-primary filter-button">All</button>
+            <button onclick="filterProducts('necklaces', [])" class="btn btn-primary filter-button">Necklaces</button>
+            <button onclick="filterProducts('earrings', [])" class="btn btn-primary filter-button">Earrings</button>
+            <button onclick="filterProducts('bracelets', [])" class="btn btn-primary filter-button">Bracelets</button>
+        </div>
+    </div>
+
+    <!-- Updated product listing with a container -->
+    <div class="container mt-4">
+        <div class="row" id="product-list">
+            <!-- Product cards will be displayed here -->
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="container-fluid bg-dark text-white py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <!-- Replace with your copyright information -->
+                    <p>&copy; 2023 Your Company. All rights reserved.</p>
+                </div>
+                <div class="col-6 text-right">
+                    <!-- Add social media links with Font Awesome icons -->
+                    <a href="#" class="text-white mr-2"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white mr-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white mr-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="product_large.jpg" alt="Product" class="img-fluid">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Analytics Tracking Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'YOUR_TRACKING_ID');
+    </script>
+
+    <!-- Add Bootstrap and JavaScript dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your JavaScript code goes here -->
+    <!-- Include the Google Sheets API script -->
+    <script src="https://apis.google.com/js/api.js"></script>
+
+    <script>
+        // Initialize the Google Sheets API client
+        gapi.load('client', start);
+
+        function start() {
+            // Initialize the API client with API key (no authentication needed for public sheets)
+            gapi.client.init({
+                apiKey: 'YOUR_API_KEY'
+            });
+
+            // Load the Google Sheets API
+            gapi.client.load('sheets', 'v4').then(function() {
+                // Define the spreadsheet ID and range
+                const spreadsheetId = 'YOUR_SPREADSHEET_ID';
+                const range = 'Sheet1'; // Replace with your sheet name or specific range
+
+                // Make an API request to get the data
+                gapi.client.sheets.spreadsheets.values.get({
+                    spreadsheetId: spreadsheetId,
+                    range: range
+                }).then(function(response) {
+                    const data = response.result.values; // Contains the data from the sheet
+                    if (data && data.length > 0) {
+                        // Process and use the data to build product details
+                        buildProductDetails(data);
+                    } else {
+                        console.log('No data found in the sheet.');
+                    }
+                }, function(reason) {
+                    console.error('Error: ' + reason.result.error.message);
+                });
+            });
+        }
+
+        // Function to build product details from the data
+        function buildProductDetails(data) {
+            // Assuming the data structure is as follows:
+            // Column 1: Product Name, Column 2: Category, Column 3: Price, ...
+            
+            // Iterate through the data and create product cards
+            for (let i = 1; i < data.length; i++) {
+                const product = {
+                    name: data[i][0],       // Product Name
+                    category: data[i][1],   // Category
+                    price: data[i][2],      // Price
+                    // Add more properties as needed
+                };
+
+                // Create a product card element (you can use the existing code)
+                const productCard = createProductCard(product);
+
+                // Append the product card to your HTML container
+                document.getElementById('product-list').appendChild(productCard);
+            }
+        }
+        </script>
+
+    <script>
+        // Sample product data (replace with your data)
+        const products = [{
+                id: 'product1',
+                name: 'Product 1',
+                category: 'necklaces',
+                price: '$15.99',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Utinam quidem dicerent alium alio beatiorem! Iubet igitur nos Pythius Apollo noscere nosmet ipsos. At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit; Duo Reges: constructio interrete.',
+                tags: ['necklaces', 'jewelry', 'accessories'],
+                availability: true, // Set product availability (true for in stock, false for out of stock)
+                offer: '10% off',
+                image: 'https://img.freepik.com/free-psd/3d-realistic-modern-colorful-podium-product-display_125755-813.jpg?w=740&t=st=1693831688~exp=1693832288~hmac=6118044436935e3afb906dc23a76da46827a71f3b99cec0495e240392eb77e98'
+            },
+            {
+                id: 'product2',
+                name: 'Product 2',
+                category: 'bracelets',
+                price: '$5.99',
+                description: 'Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Utinam quidem dicerent alium alio beatiorem! Iubet igitur nos Pythius Apollo noscere nosmet ipsos. At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit; Duo Reges: constructio interrete.',
+                tags: ['bracelets', 'jewelrys', 'accessoriess'],
+                availability: false, // Set product availability (true for in stock, false for out of stock)
+                offer: '0% off',
+                image: 'https://img.freepik.com/free-psd/3d-realistic-modern-colorful-podium-product-display_125755-813.jpg?w=740&t=st=1693831688~exp=1693832288~hmac=6118044436935e3afb906dc23a76da46827a71f3b99cec0495e240392eb77e98'
+            },
+            {
+                id: 'product3',
+                name: 'Product 3',
+                category: 'earrings',
+                price: '$5.99',
+                description: 'Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Utinam quidem dicerent alium alio beatiorem! Iubet igitur nos Pythius Apollo noscere nosmet ipsos. At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit; Duo Reges: constructio interrete.',
+                tags: ['earrings', 'jewel', 'acces'],
+                availability: false,
+                image: 'https://img.freepik.com/free-psd/3d-realistic-modern-colorful-podium-product-display_125755-813.jpg?w=740&t=st=1693831688~exp=1693832288~hmac=6118044436935e3afb906dc23a76da46827a71f3b99cec0495e240392eb77e98'
+            },
+            // Add more products here
+        ];
+
+        function createProductCard(product) {
+            const productCard = document.createElement('div');
+            productCard.classList.add('col-lg-6', 'col-md-6', 'mb-4');
+
+            const truncatedDescription = product.description.length > 200 ?
+                product.description.slice(0, 200) + '...' :
+                product.description;
+
+
+            productCard.innerHTML = `
+            <div class="product-card" data-category="${product.category}" data-product-id="${product.id}" data-tags="${product.tags.join(',')}">
+    <div class="product-image-container">
+        <img src="${product.image}" alt="${product.name}" class="product-image" data-toggle="modal" data-target="#productModal">
+    </div>
+    <div class="product-details">
+        <h2>${product.name}</h2>
+        <ul class="product-info">
+            <li><strong>Product ID:</strong> ${product.id}</li>
+            <li><strong>Category:</strong> ${product.category}</li>
+            <li><strong>Price:</strong> ${product.price}</li>
+            <li class="product-availability">${product.availability ? 'In Stock' : 'Out of Stock'}</li>
+            ${product.offer ? `<li class="product-offer"><strong>Offer:</strong> ${product.offer}</li>` : ''}
+            
+            <li class="product-tags"><strong>Tags:</strong> ${product.tags.join(', ')}</li>
+        </ul>
+        <button class="favorite-button" data-product="${product.id}" data-favorite="false" onclick="toggleFavorite(this)">
+            <i class="far fa-heart"></i>
+        </button>
+        <button onclick="makeInquiry('${product.id}')">Make Inquiry</button>
+        <button class="whatsapp-button" onclick="shareToWhatsApp('${product.name}', '${product.image}')">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+    </div>
+</div>
+        `;
+
+        // <li class="product-description">
+        //         <p class="description-text">${truncatedDescription}</p>
+        //         ${product.description.length > 200 ? `<button class="btn btn-link btn-sm" onclick="toggleDescription(this)">...</button>` : ''}
+        //     </li>
+            return productCard;
+        }
+
+        function renderProductList(products) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = createProductCard(product);
+                productList.appendChild(productCard);
+            });
+        }
+
+        function filterProducts(category, tags) {
+    const productCards = document.querySelectorAll('.product-card');
+
+    productCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        const cardTags = card.getAttribute('data-tags').split(',');
+
+        const matchesCategory = category === 'all' || category === cardCategory;
+        const matchesTags = tags.length === 0 || tags.some(tag => cardTags.includes(tag.trim().toLowerCase()));
+
+        if (matchesCategory && matchesTags) {
+            card.style.display = 'flex'; // Display the card
+            gtag('event', 'button_click', {
+                        'event_category': 'Engagement',
+                        'event_label': 'Filter Selection',
+                        'dimension5': category + ":" + tags
+                    });
+        } else {
+            card.style.display = 'none'; // Hide the card
+        }
+    });
+}
+
+
+        // function filterProducts(category, tags) {
+        //     const productCards = document.querySelectorAll('.product-card');
+
+        //     productCards.forEach(card => {
+        //         const cardCategory = card.getAttribute('data-category');
+        //         const cardTags = card.getAttribute('data-tags').split(',');
+
+        //         const matchesCategory = category === 'all' || category === cardCategory;
+        //         const matchesTags = tags.length === 0 || tags.some(tag => cardTags.includes(tag));
+
+        //         if (matchesCategory && matchesTags) {
+        //             card.style.display = 'flex'; // Display the card
+        //             gtag('event', 'button_click', {
+        //                 'event_category': 'Engagement',
+        //                 'event_label': 'Filter Selection',
+        //                 'dimension5': category + ":" + tags
+        //             });
+        //         } else {
+        //             card.style.display = 'none'; // Hide the card
+        //         }
+        //     });
+        // }
+
+
+        function getUserFavorites() {
+            const favorites = sessionStorage.getItem('favorites');
+            return favorites ? JSON.parse(favorites) : [];
+        }
+
+        // Function to save user favorites to session storage
+        function saveUserFavorites(favorites) {
+            sessionStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        // Function to handle toggling favorite
+        function toggleFavorite(button) {
+            const userFavorites = getUserFavorites();
+            const productName = button.getAttribute('data-product');
+            const isFavorite = button.classList.contains('favorite');
+
+            if (!isFavorite) {
+                userFavorites.push(productName);
+                saveUserFavorites(userFavorites);
+                button.classList.add('favorite');
+                button.innerHTML = '<i class="fas fa-heart"></i>';
+                gtag('event', 'button_click', {
+                    'event_category': 'Engagement',
+                    'event_label': 'Added Favorite',
+                    'dimension5': productName
+                });
+            } else {
+                const index = userFavorites.indexOf(productName);
+                if (index !== -1) {
+                    userFavorites.splice(index, 1);
+                    saveUserFavorites(userFavorites);
+                    button.classList.remove('favorite');
+                    button.innerHTML = '<i class="far fa-heart"></i>';
+                    gtag('event', 'button_click', {
+                        'event_category': 'Engagement',
+                        'event_label': 'Removed Favorite',
+                        'dimension5': productName
+                    });
+                }
+            }
+        }
+
+        // Function to toggle description visibility
+        function toggleDescription(button) {
+            const productCard = button.closest('.product-card');
+            const description = productCard.querySelector('.product-description');
+            const isShowing = description.classList.contains('show-description');
+
+            if (!isShowing) {
+                description.classList.add('show-description');
+            } else {
+                description.classList.remove('show-description');
+            }
+        }
+
+        // Function to initialize favorite buttons and description toggles
+        function initializeProductCards() {
+            const favoriteButtons = document.querySelectorAll('.favorite-button');
+            const descriptionButtons = document.querySelectorAll('.btn-link');
+
+            const userFavorites = getUserFavorites();
+
+            favoriteButtons.forEach(button => {
+                const productName = button.getAttribute('data-product');
+                if (userFavorites.includes(productName)) {
+                    button.classList.add('favorite');
+                    button.innerHTML = '<i class="fas fa-heart"></i>';
+                }
+                button.addEventListener('click', () => {
+                    //toggleFavorite(button);
+                });
+            });
+
+            descriptionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    toggleDescription(button);
+                });
+            });
+        }
+
+        function makeInquiry(productName) {
+            // Add your code to handle making an inquiry here.
+            const productCard = document.querySelector(`[data-product-id="${productName}"]`);
+            const productDescription = productCard.querySelector('.product-details');
+
+            // Prepare the content to share on WhatsApp
+            const shareText = `Check out this product: ${productName}`;
+            const shareUrl = window.location.href; // Replace with your actual website URL
+
+            const whatsappLink =
+                `whatsapp://send?text=${encodeURIComponent(shareText)}%0A%0A${encodeURIComponent(shareUrl)}`;
+
+            gtag('event', 'button_click', {
+                'event_category': 'Engagement',
+                'event_label': 'Make Enquiry',
+                'dimension5': productName + ":" + whatsappLink
+            });
+
+            // Open WhatsApp with the content to share
+            window.open(whatsappLink);
+        }
+
+        function shareToWhatsApp(productName, imageURL) {
+            // Prepare the content to share on WhatsApp
+            const shareText = `Check out this product: ${productName}`;
+            const shareUrl = window.location.href; // Replace with your actual website URL
+
+            // Create a WhatsApp message with both image and caption
+            const whatsappMessage = `
+        ${shareText}
+        ${shareUrl}
+    `;
+
+            // Encode the message and image URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const encodedImageURL = encodeURIComponent(imageURL);
+
+            // Create the WhatsApp Status share link
+            const whatsappStatusLink = `whatsapp://send?text=${encodedMessage}&image=${encodedImageURL}`;
+
+            // Open WhatsApp with the content to share
+            window.open(whatsappStatusLink);
+        }
+
+
+        const tagSearchInput = document.getElementById('tagSearch');
+
+        tagSearchInput.addEventListener('input', function () {
+            const searchTags = tagSearchInput.value.toLowerCase().split(',').map(tag => tag.trim());
+
+            // Remove empty tags
+            const filteredTags = searchTags.filter(tag => tag !== '');
+
+            filterProducts('all', filteredTags);
+        });
+
+        // Initialize favorite buttons and description toggles on page load
+        window.addEventListener('load', () => {
+            renderProductList(products);
+            initializeProductCards();
+        });
+    </script>
+</body>
+<script>
+    var loadTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
+    gtag('event', 'timing_complete', {
+        'name': 'load_time',
+        'value': loadTime,
+        'event_category': 'Performance'
+    });
+</script>
+
+</html>
