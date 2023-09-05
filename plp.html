@@ -165,14 +165,14 @@
             /* Adjust max width as needed */
         }
 
-        .product-card {
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            display: flex;
-            width: 100%;
-            max-width: 500px;
-            /* Adjust the maximum width as needed */
-        }
+        .col-lg-6.col-md-6.col-sm-12.mb-4 {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* Ensure full-width for responsiveness */
+}
 
         .product-image-container {
             width: 50%;
@@ -451,7 +451,7 @@
 
 
             productCard.innerHTML = `
-            <div class="product-card" data-category="${product.category}" data-product-id="${product.id}" data-tags="${product.tags.join(',')}">
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-4" data-category="${product.category}" data-product-id="${product.id}" data-tags="${product.tags.join(',')}">
     <div class="product-image-container">
         <img src="${product.image}" alt="${product.name}" class="product-image" data-toggle="modal" data-target="#productModal">
     </div>
